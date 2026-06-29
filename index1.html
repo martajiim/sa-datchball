@@ -1,0 +1,832 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dachtball Solidari - Situació d'Aprenentatge 3r d'ESO</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts for premium Canva aesthetic -->
+    <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@400;600;700;800&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome for beautiful icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #f3f4f6;
+        }
+        h1, h2, h3, .font-title {
+            font-family: 'League Spartan', sans-serif;
+        }
+        .canva-gradient {
+            background: linear-gradient(135deg, #4F46E5 0%, #7C3AED 50%, #EC4899 100%);
+        }
+        .canva-card {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .canva-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 20px -8px rgba(124, 58, 237, 0.3);
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #c084fc;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #a855f7;
+        }
+    </style>
+</head>
+<body class="text-slate-800 antialiased">
+
+    <!-- TOP DECORATIVE BAR -->
+    <div class="h-2 canva-gradient w-full"></div>
+
+    <!-- MAIN CONTAINER -->
+    <div class="min-h-screen flex flex-col lg:flex-row">
+        
+        <!-- SIDEBAR NAVIGATION (Canva Presentation Panel) -->
+        <aside class="w-full lg:w-80 bg-slate-900 text-white flex flex-col shrink-0 border-r border-slate-800">
+            <!-- App Logo & Info -->
+            <div class="p-6 border-b border-slate-800 canva-gradient">
+                <div class="flex items-center gap-3">
+                    <span class="bg-white text-violet-600 p-2 rounded-xl shadow-md flex items-center justify-center">
+                        <i class="fa-solid fa-trophy text-xl"></i>
+                    </span>
+                    <div>
+                        <h1 class="text-xl font-bold leading-none text-white tracking-wide">DACHTBALL</h1>
+                        <span class="text-xs font-semibold uppercase tracking-widest text-pink-200">SOLIDARI 3r ESO</span>
+                    </div>
+                </div>
+                <p class="text-xs text-white/80 mt-3 flex items-center gap-1">
+                    <i class="fa-solid fa-person-running"></i> SdA Educació Física • 10 Sessions
+                </p>
+            </div>
+
+            <!-- Navigation Links -->
+            <nav class="flex-1 p-4 space-y-1 overflow-y-auto">
+                <p class="px-3 text-xs font-bold text-slate-500 uppercase tracking-widest mb-2">Seccions de la SdA</p>
+                
+                <button onclick="switchTab('presentacio')" id="btn-presentacio" class="tab-btn w-full flex items-center gap-3 px-3 py-3 rounded-lg text-sm font-semibold transition-all bg-violet-600 text-white">
+                    <i class="fa-solid fa-sparkles text-lg"></i>
+                    <span>1. Presentació i Reptes</span>
+                </button>
+                
+                <button onclick="switchTab('curriculum')" id="btn-curriculum" class="tab-btn w-full flex items-center gap-3 px-3 py-3 rounded-lg text-sm font-semibold transition-all text-slate-400 hover:bg-slate-800 hover:text-white">
+                    <i class="fa-solid fa-graduation-cap text-lg"></i>
+                    <span>2. Currículum i DUA</span>
+                </button>
+                
+                <button onclick="switchTab('sessions')" id="btn-sessions" class="tab-btn w-full flex items-center gap-3 px-3 py-3 rounded-lg text-sm font-semibold transition-all text-slate-400 hover:bg-slate-800 hover:text-white">
+                    <i class="fa-solid fa-calendar-days text-lg"></i>
+                    <span>3. Les 10 Sessions (TGfU)</span>
+                </button>
+                
+                <button onclick="switchTab('torneig')" id="btn-torneig" class="tab-btn w-full flex items-center gap-3 px-3 py-3 rounded-lg text-sm font-semibold transition-all text-slate-400 hover:bg-slate-800 hover:text-white">
+                    <i class="fa-solid fa-handshake-angle text-lg"></i>
+                    <span>4. El Torneig Solidari</span>
+                </button>
+                
+                <button onclick="switchTab('recursos')" id="btn-recursos" class="tab-btn w-full flex items-center gap-3 px-3 py-3 rounded-lg text-sm font-semibold transition-all text-slate-400 hover:bg-slate-800 hover:text-white">
+                    <i class="fa-solid fa-toolbox text-lg"></i>
+                    <span>5. Recursos NESE & DUA</span>
+                </button>
+                
+                <button onclick="switchTab('avaluacio')" id="btn-avaluacio" class="tab-btn w-full flex items-center gap-3 px-3 py-3 rounded-lg text-sm font-semibold transition-all text-slate-400 hover:bg-slate-800 hover:text-white">
+                    <i class="fa-solid fa-clipboard-check text-lg"></i>
+                    <span>6. Avaluació i Rúbriques</span>
+                </button>
+            </nav>
+
+            <!-- Quick Profile Bar -->
+            <div class="p-4 border-t border-slate-800 bg-slate-950/50">
+                <div class="rounded-lg bg-slate-900 p-3 border border-slate-800 text-xs">
+                    <div class="font-bold text-slate-300 mb-1 flex items-center gap-1 text-pink-400">
+                        <i class="fa-solid fa-users"></i> Perfil de l'Aula (3r ESO)
+                    </div>
+                    <div class="grid grid-cols-2 gap-1 text-slate-400">
+                        <span>• 5 TDAH</span>
+                        <span>• 4 TEA</span>
+                        <span>• 3 TEL</span>
+                        <span>• 1 DIL</span>
+                    </div>
+                    <div class="mt-1.5 text-slate-400 font-semibold border-t border-slate-800 pt-1.5 flex justify-between">
+                        <span>• 10 Nouvinguts:</span>
+                        <span class="text-violet-400">Suport Visual Màxim</span>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- MAIN DYNAMIC CONTENT AREA -->
+        <main class="flex-1 flex flex-col min-w-0">
+            
+            <!-- HEADER TOOLBAR -->
+            <header class="bg-white border-b border-slate-200 px-6 py-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                <div>
+                    <h2 class="text-2xl font-bold text-slate-900 tracking-tight" id="header-title">1. Presentació i Justificació de la SdA</h2>
+                    <p class="text-sm text-slate-500" id="header-subtitle">Context real, repte motivador i per què el Dachtball transforma les aules.</p>
+                </div>
+                
+                <!-- DUA Quick Toggle Filters -->
+                <div class="flex items-center gap-2 self-start sm:self-center bg-slate-100 p-1 rounded-xl border border-slate-200">
+                    <span class="text-xs font-bold text-slate-500 px-2 uppercase">Filtre DUA:</span>
+                    <button onclick="highlightDua('all')" class="dua-filter active px-2.5 py-1 text-xs font-bold rounded-lg bg-violet-600 text-white transition-all">Tots</button>
+                    <button onclick="highlightDua('TDAH')" class="dua-filter px-2.5 py-1 text-xs font-bold rounded-lg text-slate-600 hover:bg-slate-200 transition-all">TDAH</button>
+                    <button onclick="highlightDua('TEA')" class="dua-filter px-2.5 py-1 text-xs font-bold rounded-lg text-slate-600 hover:bg-slate-200 transition-all">TEA/TEL</button>
+                    <button onclick="highlightDua('Nouvinguts')" class="dua-filter px-2.5 py-1 text-xs font-bold rounded-lg text-slate-600 hover:bg-slate-200 transition-all">Nouvinguts</button>
+                </div>
+            </header>
+
+            <!-- DYNAMIC SCROLL CONTAINER FOR SECTIONS -->
+            <div class="flex-1 p-6 md:p-8 overflow-y-auto max-w-7xl mx-auto w-full">
+
+                <!-- SECTION 1: PRESENTACIÓ -->
+                <section id="section-presentacio" class="tab-content space-y-8">
+                    <!-- Banner Principal Estil Canva -->
+                    <div class="canva-gradient text-white rounded-3xl p-8 md:p-12 shadow-xl relative overflow-hidden">
+                        <div class="absolute -right-10 -bottom-10 opacity-10 text-9xl font-bold">3º ESO</div>
+                        <div class="max-w-3xl space-y-4">
+                            <span class="bg-white/20 text-white font-bold text-xs uppercase px-4 py-1.5 rounded-full tracking-wider inline-block backdrop-blur-sm">SITUACIÓ D'APRENENTATGE COMPETENCIAL</span>
+                            <h2 class="text-4xl md:text-6xl font-extrabold leading-tight tracking-tight">Dachtball Solidari: Llança, Salva i Ajuda!</h2>
+                            <p class="text-lg md:text-xl text-white/90 font-light leading-relaxed">
+                                Un repte esportiu i humà on la presa de decisions tàctica (TGfU) es converteix en un aprenentatge de servei comunitari a favor d'una causa solidària triada pel propi alumnat.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Tres pilars del projecte -->
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="canva-card bg-white p-6 rounded-2xl shadow-sm border border-slate-100 flex flex-col justify-between">
+                            <div>
+                                <div class="bg-violet-100 text-violet-600 w-12 h-12 rounded-xl flex items-center justify-center mb-4">
+                                    <i class="fa-solid fa-arrows-to-circle text-xl"></i>
+                                </div>
+                                <h3 class="text-lg font-bold mb-2 text-slate-900">Per què Dachtball?</h3>
+                                <p class="text-sm text-slate-600 leading-relaxed">
+                                    És un esport altament dinàmic, on no es necessita una habilitat tècnica complexa prèvia. Un sol llançador no pot guanyar, ja que les pilotes múltiples (3 en joc simultani) obliguen a una col·laboració i comunicació constants per salvar els eliminats i defensar el camp.
+                                </p>
+                            </div>
+                            <span class="text-xs text-violet-500 font-bold mt-4 inline-block">100% Inclusiu</span>
+                        </div>
+
+                        <div class="canva-card bg-white p-6 rounded-2xl shadow-sm border border-slate-100 flex flex-col justify-between">
+                            <div>
+                                <div class="bg-pink-100 text-pink-600 w-12 h-12 rounded-xl flex items-center justify-center mb-4">
+                                    <i class="fa-solid fa-puzzle-piece text-xl"></i>
+                                </div>
+                                <h3 class="text-lg font-bold mb-2 text-slate-900">Model TGfU</h3>
+                                <p class="text-sm text-slate-600 leading-relaxed">
+                                    L'alumnat aprèn jugant (no amb mètodes analítics). La tàctica ("Quan llanço?", "Com defenso?", "A qui cal salvar primer?") precedeix a la tècnica. Això manté els alumnes amb TDAH altament motivats i facilita la comprensió pràctica de l'alumnat TEL o nouvingut.
+                                </p>
+                            </div>
+                            <span class="text-xs text-pink-500 font-bold mt-4 inline-block">Comprensió del Joc</span>
+                        </div>
+
+                        <div class="canva-card bg-white p-6 rounded-2xl shadow-sm border border-slate-100 flex flex-col justify-between">
+                            <div>
+                                <div class="bg-teal-100 text-teal-600 w-12 h-12 rounded-xl flex items-center justify-center mb-4">
+                                    <i class="fa-solid fa-heart-circle-check text-xl"></i>
+                                </div>
+                                <h3 class="text-lg font-bold mb-2 text-slate-900">Aprenentatge Solidari</h3>
+                                <p class="text-sm text-slate-600 leading-relaxed">
+                                    A 3r d'ESO es necessiten reptes autèntics. Organitzar un torneig on l'entrada per als participants i espectadors sigui una aportació solidària (aliments, material escolar per a entitats del barri) dona un sentit real de ciutadania activa a la pràctica de l'Educació Física.
+                                </p>
+                            </div>
+                            <span class="text-xs text-teal-500 font-bold mt-4 inline-block">Connexió amb l'entorn</span>
+                        </div>
+                    </div>
+
+                    <!-- El Repte Motivador en Detall -->
+                    <div class="bg-slate-900 text-slate-100 rounded-3xl p-6 md:p-8 flex flex-col lg:flex-row items-center gap-8 shadow-md">
+                        <div class="flex-1 space-y-4">
+                            <h3 class="text-2xl font-bold text-white flex items-center gap-2">
+                                <span class="text-pink-500"><i class="fa-solid fa-bullseye-arrow"></i></span> El Repte del Grup: "La Lliga dels Valors"
+                            </h3>
+                            <p class="text-sm text-slate-300 leading-relaxed">
+                                Com a grup de 3r d'ESO, assumireu tots els rols d'una federació esportiva autèntica. Organitzareu la primera <strong>Lliga de Dachtball de Cohesió i Solidaritat</strong> del centre. 
+                            </p>
+                            <div class="grid grid-cols-2 gap-4 text-xs text-slate-400">
+                                <div class="flex items-start gap-2">
+                                    <i class="fa-regular fa-circle-check text-emerald-400 mt-1"></i>
+                                    <span><strong>Rols d'organització:</strong> Disseny de cartells, àrbitres, anotadors, fotògrafs i entrenadors.</span>
+                                </div>
+                                <div class="flex items-start gap-2">
+                                    <i class="fa-regular fa-circle-check text-emerald-400 mt-1"></i>
+                                    <span><strong>Valor de la inscripció:</strong> Productes de primera necessitat per al Banc d'Aliments de la ciutat.</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="w-full lg:w-72 bg-slate-800 p-5 rounded-2xl border border-slate-700 text-center space-y-3 shrink-0">
+                            <div class="text-4xl text-yellow-400 font-extrabold">100%</div>
+                            <div class="text-xs uppercase tracking-wider font-bold text-slate-400">Taxa d'Inclusió</div>
+                            <p class="text-xs text-slate-300 leading-relaxed">Gràcies a les regles adaptatives del Dachtball i als sistemes de suport visual, el 100% de l'alumnat, inclosos els teus 10 alumnes nouvinguts, participen activament en igualtat de condicions.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- SECTION 2: MARCO CURRICULAR Y DUA -->
+                <section id="section-curriculum" class="tab-content hidden space-y-8">
+                    <!-- Tab-local Header -->
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
+                        <h3 class="text-2xl font-bold mb-4 text-slate-900 flex items-center gap-2">
+                            <i class="fa-solid fa-book-open text-violet-600"></i> Alineació Pedagògica (LOMLOE i Currículum de Catalunya)
+                        </h3>
+                        <p class="text-sm text-slate-600 leading-relaxed">
+                            Aquesta proposta treballa de manera directa les competències específiques d'Educació Física de 3r d'ESO a Catalunya, integrant-hi un disseny universal per a l'aprenentatge (DUA).
+                        </p>
+                    </div>
+
+                    <!-- Competències específiques i sabers bàsics -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 space-y-4">
+                            <h4 class="text-lg font-bold text-slate-900 border-b border-slate-100 pb-2 flex items-center gap-2">
+                                <span class="text-violet-600"><i class="fa-solid fa-list-check"></i></span> Competències Específiques i Criteris d'Avaluació
+                            </h4>
+                            
+                            <div class="space-y-3 text-sm text-slate-700">
+                                <div class="bg-slate-50 p-3 rounded-xl border-l-4 border-violet-500">
+                                    <p class="font-bold text-slate-900">Competència 1: Resolució de situacions motrius</p>
+                                    <p class="text-xs text-slate-500 mt-1">Criteri d'avaluació 1.1: Prendre decisions tàctiques de manera col·laborativa per superar situacions de joc reduït o real, adaptant l'execució als requisits canviants (TGfU).</p>
+                                </div>
+                                <div class="bg-slate-50 p-3 rounded-xl border-l-4 border-pink-500">
+                                    <p class="font-bold text-slate-900">Competència 3: Autoregulació emocional i respecte</p>
+                                    <p class="text-xs text-slate-500 mt-1">Criteri d'avaluació 3.1: Resoldre de manera pacífica i dialògica els conflictes de joc, mostrant joc net (Fair Play) i respecte a les regles.</p>
+                                </div>
+                                <div class="bg-slate-50 p-3 rounded-xl border-l-4 border-teal-500">
+                                    <p class="font-bold text-slate-900">Competència 4: Ciutadania i participació social</p>
+                                    <p class="text-xs text-slate-500 mt-1">Criteri d'avaluació 4.2: Cooperar activament en la gestió i desenvolupament d'un esdeveniment esportiu escolar (el torneig solidari), assumint rols d'anotador, àrbitre o gestor.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Sabers Bàsics -->
+                        <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 space-y-4">
+                            <h4 class="text-lg font-bold text-slate-900 border-b border-slate-100 pb-2 flex items-center gap-2">
+                                <span class="text-pink-600"><i class="fa-solid fa-brain"></i></span> Sabers Bàsics (3r ESO)
+                            </h4>
+                            <div class="space-y-3">
+                                <div class="flex items-start gap-3 p-2 hover:bg-slate-50 rounded-lg transition-colors">
+                                    <span class="text-violet-500 mt-0.5"><i class="fa-solid fa-circle-check"></i></span>
+                                    <div>
+                                        <p class="text-sm font-semibold text-slate-900">Pràctiques d'esport alternatiu col·lectiu</p>
+                                        <p class="text-xs text-slate-500">Dachtball: fonaments tàctics d'atac (sincronització de llançaments) i defensa (esquiva, bloqueig, recepció).</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start gap-3 p-2 hover:bg-slate-50 rounded-lg transition-colors">
+                                    <span class="text-pink-500 mt-0.5"><i class="fa-solid fa-circle-check"></i></span>
+                                    <div>
+                                        <p class="text-sm font-semibold text-slate-900">Model TGfU (Joc de Comprensió Tàctica)</p>
+                                        <p class="text-xs text-slate-500">Resolució de situacions reals de joc mitjançant rodes de reflexió d'equip guiades ("Debat sobre el Joc").</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start gap-3 p-2 hover:bg-slate-50 rounded-lg transition-colors">
+                                    <span class="text-teal-500 mt-0.5"><i class="fa-solid fa-circle-check"></i></span>
+                                    <div>
+                                        <p class="text-sm font-semibold text-slate-900">Ciutadania activa i participació</p>
+                                        <p class="text-xs text-slate-500">L'esport de cooperació-oposició com a eina d'Aprenentatge Servei (ApS) i cohesió social d'alumnat de diferents orígens.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Matriu DUA adaptada a l'alumnat NESE concret -->
+                    <div class="bg-slate-900 text-white rounded-3xl p-6 md:p-8 space-y-6">
+                        <div class="border-b border-slate-800 pb-4">
+                            <h4 class="text-2xl font-bold text-pink-400 flex items-center gap-2">
+                                <i class="fa-solid fa-circle-nodes"></i> Matriu DUA d'Inclusió Personalitzada
+                            </h4>
+                            <p class="text-xs text-slate-400 mt-1">Com responem exactament als perfils del teu grup utilitzant els tres principis del Disseny Universal de l'Aprenentatge.</p>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                            <!-- Principio 1 -->
+                            <div class="bg-slate-800/60 p-5 rounded-2xl border border-slate-800 space-y-3">
+                                <span class="bg-violet-900 text-violet-300 font-bold text-xs uppercase px-3 py-1 rounded-full">Compromís</span>
+                                <h5 class="font-bold text-sm text-slate-200">Mantenir motivats els 5 TDAH</h5>
+                                <p class="text-xs text-slate-400 leading-relaxed">
+                                    En Dachtball mai hi ha temps mort d'inactivitat. Si un alumne és "eliminat", canvia de rol immediatament convertint-se en "salvador" darrere de la línia enemiga, participant de manera continuada sense "esperar assegut".
+                                </p>
+                            </div>
+
+                            <!-- Principio 2 -->
+                            <div class="bg-slate-800/60 p-5 rounded-2xl border border-slate-800 space-y-3">
+                                <span class="bg-pink-900 text-pink-300 font-bold text-xs uppercase px-3 py-1 rounded-full">Representació</span>
+                                <h5 class="font-bold text-sm text-slate-200">Per als 4 TEA, 3 TEL i 10 Nouvinguts</h5>
+                                <p class="text-xs text-slate-400 leading-relaxed">
+                                    Presentació visual de regles mitjançant <strong>targetes de pictogrames universals</strong>, línies de colors altament contrastades a la pista i senyalització no verbal dels àrbitres amb banderes vermelles i verdes per minimitzar la barrera lingüística.
+                                </p>
+                            </div>
+
+                            <!-- Principio 3 -->
+                            <div class="bg-slate-800/60 p-5 rounded-2xl border border-slate-800 space-y-3">
+                                <span class="bg-teal-900 text-teal-300 font-bold text-xs uppercase px-3 py-1 rounded-full">Acció i Expressió</span>
+                                <h5 class="font-bold text-sm text-slate-200">Flexibilitat per a l'alumne DIL</h5>
+                                <p class="text-xs text-slate-400 leading-relaxed">
+                                    Adaptació opcional de la regla de recepció (DIL): pot retenir la pilota amb dos rebots previs a terra per rebre un "salvat", mentre que per a la resta de l'alumnat ha de ser una recepció aèria o directa.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- SECTION 3: SESSIONS -->
+                <section id="section-sessions" class="tab-content hidden space-y-8">
+                    <!-- Selector de sessió interactiva -->
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
+                        <p class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-3">La Progressió Tàctica de les 10 Sessions</p>
+                        <div class="flex flex-wrap gap-2">
+                            <button onclick="showSession(1)" id="s-btn-1" class="session-nav-btn active px-3.5 py-2 text-xs font-bold rounded-xl bg-violet-600 text-white transition-all">S1: Inici</button>
+                            <button onclick="showSession(2)" id="s-btn-2" class="session-nav-btn px-3.5 py-2 text-xs font-bold rounded-xl bg-slate-100 text-slate-600 hover:bg-slate-200 transition-all">S2: Defensar</button>
+                            <button onclick="showSession(3)" id="s-btn-3" class="session-nav-btn px-3.5 py-2 text-xs font-bold rounded-xl bg-slate-100 text-slate-600 hover:bg-slate-200 transition-all">S3: Atacar</button>
+                            <button onclick="showSession(4)" id="s-btn-4" class="session-nav-btn px-3.5 py-2 text-xs font-bold rounded-xl bg-slate-100 text-slate-600 hover:bg-slate-200 transition-all">S4: Rols</button>
+                            <button onclick="showSession(5)" id="s-btn-5" class="session-nav-btn px-3.5 py-2 text-xs font-bold rounded-xl bg-slate-100 text-slate-600 hover:bg-slate-200 transition-all">S5: Co-creació</button>
+                            <button onclick="showSession(6)" id="s-btn-6" class="session-nav-btn px-3.5 py-2 text-xs font-bold rounded-xl bg-slate-100 text-slate-600 hover:bg-slate-200 transition-all">S6: Entrenament</button>
+                            <button onclick="showSession(7)" id="s-btn-7" class="session-nav-btn px-3.5 py-2 text-xs font-bold rounded-xl bg-slate-100 text-slate-600 hover:bg-slate-200 transition-all">S7: Torneig I</button>
+                            <button onclick="showSession(8)" id="s-btn-8" class="session-nav-btn px-3.5 py-2 text-xs font-bold rounded-xl bg-slate-100 text-slate-600 hover:bg-slate-200 transition-all">S8: Torneig II</button>
+                            <button onclick="showSession(9)" id="s-btn-9" class="session-nav-btn px-3.5 py-2 text-xs font-bold rounded-xl bg-slate-100 text-slate-600 hover:bg-slate-200 transition-all">S9: Finals</button>
+                            <button onclick="showSession(10)" id="s-btn-10" class="session-nav-btn px-3.5 py-2 text-xs font-bold rounded-xl bg-slate-100 text-slate-600 hover:bg-slate-200 transition-all">S10: Tancament</button>
+                        </div>
+                    </div>
+
+                    <!-- Àrea d'informació de sessió -->
+                    <div id="session-display-box" class="bg-white rounded-3xl p-6 md:p-8 shadow-sm border border-slate-100 space-y-6">
+                        <!-- Dynamic content injected by JavaScript -->
+                    </div>
+                </section>
+
+                <!-- SECTION 4: EL TORNEIG SOLIDARI -->
+                <section id="section-torneig" class="tab-content hidden space-y-8">
+                    <div class="canva-gradient text-white rounded-3xl p-8 shadow-md">
+                        <span class="bg-white/20 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-widest inline-block mb-3">Producte Final de la SdA</span>
+                        <h3 class="text-3xl md:text-5xl font-extrabold mb-4">El Torneig Solidari "Dachtball per a Tothom"</h3>
+                        <p class="text-sm md:text-base text-white/95 max-w-4xl font-light leading-relaxed">
+                            Aquest no és un torneig d'Educació Física normal. En lloc de donar prioritat a la victòria competitiva, l'èxit es defineix per la gestió impecable de la solidaritat, el nivell de fair play observat i la igualtat de temps de joc de cadascun dels membres del grup.
+                        </p>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <!-- Roles del Torneo (TGfU) -->
+                        <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 space-y-4">
+                            <h4 class="text-lg font-bold text-slate-900 border-b border-slate-100 pb-2 flex items-center gap-2">
+                                <span class="text-violet-600"><i class="fa-solid fa-users-gear"></i></span> Rols de l'Alumnat (Garantia de Participació)
+                            </h4>
+                            <p class="text-xs text-slate-500">Cada alumne tindrà un rol esportiu i un rol d'organització en el seu equip cooperatiu.</p>
+                            
+                            <div class="space-y-3">
+                                <div class="p-3 bg-slate-50 rounded-xl flex items-start gap-3">
+                                    <span class="text-pink-500 mt-1"><i class="fa-solid fa-whistle"></i></span>
+                                    <div>
+                                        <p class="text-sm font-bold text-slate-950">Àrbitres d'Inclusió (Ajudats per TEA/TEL/Nouvinguts)</p>
+                                        <p class="text-xs text-slate-600 mt-1">Utilitzen targetes visuals d'infracció per explicar ràpidament el motiu de l'eliminació, evitant malentesos verbals.</p>
+                                    </div>
+                                </div>
+                                <div class="p-3 bg-slate-50 rounded-xl flex items-start gap-3">
+                                    <span class="text-violet-500 mt-1"><i class="fa-solid fa-heart-pulse"></i></span>
+                                    <div>
+                                        <p class="text-sm font-bold text-slate-950">Comissió de Solidaritat (Responsables de Recollida)</p>
+                                        <p class="text-xs text-slate-600 mt-1">Dissenyen els cartells de difusió, mantenen el contacte amb l'entitat social col·laboradora i organitzen la taula de recollida.</p>
+                                    </div>
+                                </div>
+                                <div class="p-3 bg-slate-50 rounded-xl flex items-start gap-3">
+                                    <span class="text-teal-500 mt-1"><i class="fa-solid fa-chart-column"></i></span>
+                                    <div>
+                                        <p class="text-sm font-bold text-slate-950">Anotadors i Cronometradors (Visualització instantània)</p>
+                                        <p class="text-xs text-slate-600 mt-1">Mantenen actualitzats els marcadors visuals gegants de la pista perquè tothom (inclosos TEA) sàpiga exactament l'estat del torneig.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- El sistema de Puntos del Torneo -->
+                        <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 space-y-4">
+                            <h4 class="text-lg font-bold text-slate-900 border-b border-slate-100 pb-2 flex items-center gap-2">
+                                <span class="text-teal-600"><i class="fa-solid fa-star"></i></span> El Sistema de Punts de la Cohesió
+                            </h4>
+                            <p class="text-xs text-slate-500">Per determinar la classificació del torneig, els punts per "Victòria" es complementen amb el "Fair Play".</p>
+
+                            <div class="space-y-2 text-sm text-slate-700">
+                                <div class="flex justify-between items-center p-2.5 bg-slate-50 rounded-lg">
+                                    <span>Guanyar el matx de Dachtball</span>
+                                    <span class="font-bold text-violet-600 text-sm">+ 3 Punts</span>
+                                </div>
+                                <div class="flex justify-between items-center p-2.5 bg-slate-50 rounded-lg">
+                                    <span>Llançaments fets per més de 3 companys diferents</span>
+                                    <span class="font-bold text-pink-600 text-sm">+ 2 Punts (Impulsa TGfU)</span>
+                                </div>
+                                <div class="flex justify-between items-center p-2.5 bg-slate-50 rounded-lg">
+                                    <span>Respecte estricte de la senyalització d'eliminació</span>
+                                    <span class="font-bold text-teal-600 text-sm">+ 2 Punts (Autoregulació)</span>
+                                </div>
+                                <div class="flex justify-between items-center p-2.5 bg-slate-50 rounded-lg">
+                                    <span>Aportació de material/aliment del grup al complet</span>
+                                    <span class="font-bold text-amber-500 text-sm">+ 3 Punts extres</span>
+                                </div>
+                            </div>
+
+                            <div class="p-3 bg-amber-50 text-amber-900 text-xs rounded-xl border border-amber-200 mt-4">
+                                <p class="font-bold"><i class="fa-solid fa-triangle-exclamation"></i> Conseqüència de l'estructura:</p>
+                                <p class="mt-1">Un equip molt fort que mai passa la pilota i protesta les decisions de l'àrbitre NO podrà guanyar el torneig solidari.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- SECTION 5: RECURSOS NESE -->
+                <section id="section-recursos" class="tab-content hidden space-y-8">
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
+                        <h3 class="text-2xl font-bold mb-3 text-slate-900 flex items-center gap-2">
+                            <i class="fa-solid fa-toolbox text-violet-600"></i> Targetes Visuals i Recursos Adaptatius (DUA)
+                        </h3>
+                        <p class="text-sm text-slate-600">
+                            A continuació et presentem la maqueta d'un recurs clau d'inclusió: la **Targeta Tàctica Visual** que s'utilitzarà a peu de pista durant les rutes de debat TGfU. Aquesta eina és vital per a l'alumnat nouvingut, amb TEL i TEA.
+                        </p>
+                    </div>
+
+                    <!-- Simulador de Targetes Visuals Dachtball -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <!-- Targeta Visual Atac -->
+                        <div class="border-2 border-dashed border-violet-200 bg-violet-50/50 p-6 rounded-3xl space-y-4">
+                            <div class="flex justify-between items-center">
+                                <span class="bg-violet-600 text-white font-bold text-xs uppercase px-3 py-1 rounded-full">Targeta d'Atac Cooperatiu</span>
+                                <span class="text-slate-400 text-xs font-semibold">Descarregable / Imprimible</span>
+                            </div>
+                            
+                            <div class="bg-white p-6 rounded-2xl shadow-md border border-violet-100 space-y-4">
+                                <div class="flex items-center gap-3 border-b pb-3">
+                                    <span class="text-2xl">🔥</span>
+                                    <div>
+                                        <h4 class="font-extrabold text-slate-900 leading-none">LLANÇAMENT SÍNCRON (3 pilotes)</h4>
+                                        <span class="text-[10px] text-slate-400 tracking-wider uppercase font-bold">Tàctica Ofensiva</span>
+                                    </div>
+                                </div>
+                                <p class="text-xs text-slate-600 leading-relaxed">
+                                    Si llança només un jugador, el rival la repassarà fàcilment (eliminant-nos). S'han de fer senyals visuals per llançar simultàniament des de tres posicions.
+                                </p>
+                                <div class="bg-slate-900 text-white p-4 rounded-xl text-center font-bold text-sm tracking-wide">
+                                    <div class="grid grid-cols-3 gap-2">
+                                        <div class="p-1 border border-slate-700 rounded">1. Triar Objectiu</div>
+                                        <div class="p-1 border border-slate-700 rounded text-pink-400">2. Contacte Visual</div>
+                                        <div class="p-1 border border-slate-700 rounded text-emerald-400">3. Llançar a l'un!</div>
+                                    </div>
+                                </div>
+                                <div class="flex justify-between text-[11px] text-slate-500 font-semibold pt-2">
+                                    <span>💡 Fàcil interpretació per a TEL/DIL</span>
+                                    <span>🌐 Traducció Multilingüe Disponible</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Targeta Visual Defensa -->
+                        <div class="border-2 border-dashed border-pink-200 bg-pink-50/50 p-6 rounded-3xl space-y-4">
+                            <div class="flex justify-between items-center">
+                                <span class="bg-pink-600 text-white font-bold text-xs uppercase px-3 py-1 rounded-full">Targeta de Salvació</span>
+                                <span class="text-slate-400 text-xs font-semibold">Descarregable / Imprimible</span>
+                            </div>
+                            
+                            <div class="bg-white p-6 rounded-2xl shadow-md border border-pink-100 space-y-4">
+                                <div class="flex items-center gap-3 border-b pb-3">
+                                    <span class="text-2xl">🛡️</span>
+                                    <div>
+                                        <h4 class="font-extrabold text-slate-900 leading-none">LA PRIORITAT DEL SALVADOR</h4>
+                                        <span class="text-[10px] text-slate-400 tracking-wider uppercase font-bold">Tàctica Defensiva</span>
+                                    </div>
+                                </div>
+                                <p class="text-xs text-slate-600 leading-relaxed">
+                                    Quan un company del teu equip és eliminat, es col·loca al camp dels "Salvadors" (darrere del camp rival). Els jugadors actius els han de fer arribar una pilota perquè puguin tornar al joc.
+                                </p>
+                                <div class="bg-slate-900 text-white p-4 rounded-xl text-center font-bold text-sm tracking-wide">
+                                    <div class="grid grid-cols-2 gap-2">
+                                        <div class="p-1 border border-slate-700 rounded">Passada Segura</div>
+                                        <div class="p-1 border border-slate-700 rounded text-pink-400">Tornar al Camp actiu</div>
+                                    </div>
+                                </div>
+                                <div class="flex justify-between text-[11px] text-slate-500 font-semibold pt-2">
+                                    <span>🧠 Redueix l'estrès de presa de decisions</span>
+                                    <span>👁️ Format amb Pictogrames</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- SECTION 6: EVALUACIÓN -->
+                <section id="section-avaluacio" class="tab-content hidden space-y-8">
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
+                        <h3 class="text-2xl font-bold mb-2 text-slate-900 flex items-center gap-2">
+                            <i class="fa-solid fa-clipboard-check text-violet-600"></i> Avaluació Autèntica, Formativa i Inclusiva
+                        </h3>
+                        <p class="text-sm text-slate-600 leading-relaxed">
+                            L'avaluació en aquesta SdA compta amb un alt percentatge de participació de l'alumnat mitjançant la **coavaluació (entre equips)** i l'**autoavaluació individual**. L'avaluació es realitza mitjançant rúbriques d'observació adaptades al nivell cognitiu del grup.
+                        </p>
+                    </div>
+
+                    <!-- Generador de Rúbriques Interactiu -->
+                    <div class="bg-white rounded-3xl p-6 md:p-8 shadow-sm border border-slate-100 space-y-6">
+                        <h4 class="text-lg font-bold text-slate-900 border-b pb-3 flex items-center justify-between">
+                            <span>Rúbrica de Valoració Competencial (Dachtball)</span>
+                            <span class="text-xs text-slate-400 font-semibold uppercase">Puntuacions en %</span>
+                        </h4>
+
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-left text-sm">
+                                <thead class="bg-slate-50 text-slate-700 font-bold border-b">
+                                    <tr>
+                                        <th class="p-4 rounded-l-xl">Criteri / Indicador</th>
+                                        <th class="p-4">Assoliment Excel·lent (3 Pts)</th>
+                                        <th class="p-4">Assoliment Satisfactori (2 Pts)</th>
+                                        <th class="p-4">Assoliment En Procés (1 Pt)</th>
+                                        <th class="p-4 rounded-r-xl">Instrument</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-slate-100 text-slate-600">
+                                    <tr>
+                                        <td class="p-4 font-bold text-slate-900">1. Participació en Rols de Joc (TGfU)</td>
+                                        <td class="p-4 text-xs">Assumeix activament el seu paper tàctic en atac i defensa, col·laborant dinàmicament en la salvació dels companys sense desconnectar-se.</td>
+                                        <td class="p-4 text-xs">Compleix el rol assignat amb implicació, tot i que té algunes dificultats de sincronització tàctica d'atac.</td>
+                                        <td class="p-4 text-xs">Es mostra passiu/va durant el joc o té dificultat extrema per respectar el funcionament del rol tàctic sense ajut constant.</td>
+                                        <td class="p-4 font-bold text-violet-600 text-xs">Diana d'Autoavaluació</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="p-4 font-bold text-slate-900">2. Regulació emocional i Fair Play</td>
+                                        <td class="p-4 text-xs">Accepta totes les eliminacions de manera immediata, dona suport positiu als companys i utilitza el diàleg davant d'errors del joc.</td>
+                                        <td class="p-4 text-xs">Accepta generalment les eliminacions i mostra comportament de respecte a àrbitres i rivals amb algun toc d'atenció puntual.</td>
+                                        <td class="p-4 text-xs">Protesta freqüentment, no accepta les eliminacions i necessita intervenció externa del docent de manera continuada.</td>
+                                        <td class="p-4 font-bold text-pink-600 text-xs">Full de Coavaluació d'Equip</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="p-4 font-bold text-slate-900">3. Organització del Torneig Solidari</td>
+                                        <td class="p-4 text-xs">Assumeix de manera excel·lent els rols d'organització (àrbitre, anotador, comissió solidària, fotògraf), aportant valor real.</td>
+                                        <td class="p-4 text-xs">Realitza el treball de gestió/organització assignat, tot i que necessita recordatoris o coordinació directa.</td>
+                                        <td class="p-4 text-xs">No s'involucra en la gestió del torneig solidari o es limita a observar de manera inactiva.</td>
+                                        <td class="p-4 font-bold text-teal-600 text-xs">Rúbrica d'Observació Docent</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+
+            <!-- FOOTER WITH TEACHER PROMPT/FEEDBACK -->
+            <footer class="bg-white border-t border-slate-200 p-6 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-full bg-violet-100 flex items-center justify-center text-violet-600">
+                        <i class="fa-solid fa-chalkboard-user"></i>
+                    </div>
+                    <div>
+                        <p class="text-xs text-slate-500 leading-none">Creador de SdA Interactiu per a:</p>
+                        <p class="text-sm font-bold text-slate-900">Educació Física LOMLOE • INS LL. Companys</p>
+                    </div>
+                </div>
+                <div class="flex items-center gap-3">
+                    <p class="text-xs text-slate-600 text-right max-w-[250px] hidden md:block">Vols demanar canvis específics en alguna sessió o ampliar el llistat de materials?</p>
+                    <button class="bg-slate-900 text-white font-semibold text-xs px-4 py-2.5 rounded-xl hover:bg-slate-800 transition-all shadow-md">Sol·licitar Adaptació</button>
+                </div>
+            </footer>
+
+        </main>
+    </div>
+
+    <!-- JAVASCRIPT STATE AND DATA CONTROLLER -->
+    <script>
+        // Set actual app state variable for layout and DUA focus
+        let activeDuaFilter = 'all';
+
+        // 10 SESSIONS COMPREHENSIVE DATA (LOMLOE, TGfU, DUA integrated)
+        const sessionsData = {
+            1: {
+                title: "Sessió 1: El Repte del Dachtball i la Solidaritat",
+                focus: "Iniciació global i descobriment de regles",
+                warmup: "L'esquiva de la tanca: joc dinàmic de presa de decisions d'esquivada de pilotes de foam.",
+                main: "<strong>Joc global reduït:</strong> Equips de 4 vs 4 en pistes de mida reduïda amb una única pilota en joc. Es pretén que comprenguin la relació d'atac-defensa immediata. Després de 5 minuts es fa la primera roda de reflexió tàctica (TGfU): 'Què és més eficaç: llançar ràpidament o esperar que el receptor estigui descol·locat?'",
+                cooldown: "Definició grupal dels objectius del torneig solidari: tria de l'ONG beneficiària.",
+                dua: "TDAH: Rotacions de canvi de joc cada 3 minuts. Nouvinguts: targetes amb un quadrat verd per joc actiu i rodó vermell per eliminat.",
+                classDuaHighlight: "Nouvinguts"
+            },
+            2: {
+                title: "Sessió 2: Com ens protegim? (Tàctica defensiva - Esquivar i agafar)",
+                focus: "Presa de decisions defensives (esquivar vs agafar a l'aire)",
+                warmup: "Joc d'escalfament del 'Guardaespatlles': un jugador protegeix un company de ser tocat utilitzant el seu propi cos.",
+                main: "<strong>TGfU Proposta:</strong> S'introdueix la segona pilota simultània. L'alumnat descobreix la necessitat de tenir un defensor/vigilant que no llança mai i que avisa els companys d'on ve el perill. <em>Roda de debat:</em> 'Si intentes agafar una pilota que va molt ràpida a l'aire i et cau, què passa? Quan convé esquivar i quan convé rebre?'",
+                cooldown: "Estiraments guiats amb un mural visual de posicions anatòmiques.",
+                dua: "TEA/TEL: Pista clarament dividida amb cons de colors per senyalitzar el límit visual d'on es pot esquivar de manera segura.",
+                classDuaHighlight: "TEA"
+            },
+            3: {
+                title: "Sessió 3: L'Atac Coordinat i Síncron",
+                focus: "Tàctica ofensiva (com superar la defensa organitzada)",
+                warmup: "Rodes ràpides de llançament dirigit a blancs fixos mòbils (companys en moviment constant).",
+                main: "<strong>TGfU Proposta:</strong> Joc real 6 vs 6 on s'estableix la regla que només es pot eliminar si s'executen dos llançaments de forma simultània en menys de 2 segons. Els alumnes s'han de coordinar mitjançant senyals visuals (contacte d'ulls o aixecar la mà).",
+                cooldown: "Posada en comú: Quina tàctica de senyalització ha funcionat millor de forma no verbal?",
+                dua: "TEL: Utilització de targetes de color verd (Atac) i groc (Defensa) per marcar el moment de transició sense parlar.",
+                classDuaHighlight: "TEA"
+            },
+            4: {
+                title: "Sessió 4: El Poder de Salvar els Eliminats",
+                focus: "Gestió dels salvadors com a recurs estratègic d'equip",
+                warmup: "Cadena de cooperació: moure la pilota de foam al voltant de la pista sense córrer.",
+                main: "<strong>TGfU Proposta:</strong> S'introdueix la línia dels 'Salvadors' (al darrere de la pista rival). Quan un alumne és tocat, es col·loca al darrere d'ells. Ara l'equip té dues línies d'atac. Com s'utilitza aquesta connexió per salvar els companys?",
+                cooldown: "Anàlisi cooperatiu: l'alumne DIL explica el canvi de dinamisme en el joc amb el salvador.",
+                dua: "TDAH: Alta implicació. El rol de salvador té moviment lliure al voltant de la pista exterior, activant el moviment físic sense frustració de l'eliminació.",
+                classDuaHighlight: "TDAH"
+            },
+            5: {
+                title: "Sessió 5: Disseny i Organització dels Equips i Rols del Torneig",
+                focus: "Creació de la infraestructura solidària de treball",
+                warmup: "Llançament i agafada per parelles amb focus de velocitat de reacció.",
+                main: "Sessió mixta d'aula i gimnàs. Es defineixen formalment els 4-5 equips barrejant perfils de manera totalment coeducativa i inclusiva. Es trien de manera conjunta els rols de disseny de cartelleria, àrbitres i gestió d'aliments per al torneig.",
+                cooldown: "Signatura del 'Compromís del Fair Play' de l'esport escolar.",
+                dua: "Nouvinguts: El full de compromís té pictogrames clars que mostren encaixades de mans, recollida de menjar i suport mutu.",
+                classDuaHighlight: "Nouvinguts"
+            },
+            6: {
+                title: "Sessió 6: Entrenament Autònom d'Equips i Simulacre de Rols",
+                focus: "Autogestió i autoregulació dels grups",
+                warmup: "Routines d'activació autogestionades pels líders físics de cada equip.",
+                main: "Cada equip disposa d'un espai de la pista per entrenar la seva tàctica personalitzada utilitzant les 'Targetes Tàctiques' lliurades pel docent. Mentrestant, els alumnes amb rols d'àrbitres realitzen un simulacre de senyalització visual.",
+                cooldown: "Ajust de tàctiques en els fulls d'equip.",
+                dua: "TEA/TEL: Agenda visual clara de la sessió de 5 passos a la pissarra del pavelló per evitar incertesa d'activitats.",
+                classDuaHighlight: "TEA"
+            },
+            7: {
+                title: "Sessió 7: Fase de Grups I del Torneig Solidari",
+                focus: "Cohesió i gestió de la pressió competitiva",
+                warmup: "Mobilitat articular general i llançaments de reconeixement de camp.",
+                main: "Inici formal de la 'Lliga del Valors'. Dos partits simultanis de Dachtball. Els equips que no juguen s'encarreguen de l'arbitratge, del cronòmetre i de la recollida inicial de les donacions de menjar de l'alumnat del centre.",
+                cooldown: "Actualització de la taula de classificació cooperativa.",
+                dua: "TDAH: Rols molt actius de gestió de temps i marcador per garantir l'atenció quan no estan jugant.",
+                classDuaHighlight: "TDAH"
+            },
+            8: {
+                title: "Sessió 8: Fase de Grups II i Gestió de la Solidaritat",
+                focus: "Lideratge compartit i resolució tàctica sota fatiga",
+                warmup: "Jocs de persecució de baixa intensitat.",
+                main: "Segona part de la fase de classificació. Es promou de manera obligatòria la rotació de jugadors a la pista per garantir que tots hagin jugat el mateix nombre de minuts, mesurat de manera pública pels cronometradors del torneig.",
+                cooldown: "Visualització del volum total d'aliments recollits durant el torneig.",
+                dua: "DIL: L'alumne compta amb suport de targetes de suport visual de l'equip on s'indica de forma senzilla on col·locar-se a la pista.",
+                classDuaHighlight: "TDAH"
+            },
+            9: {
+                title: "Sessió 9: Les Finals Cooperatives i Lliurament de Premis",
+                focus: "Celebració del procés d'aprenentatge i ciutadania",
+                warmup: "Activació general per parelles mitjançant jocs tradicionals adaptats.",
+                main: "Partits de finals. Tot el grup de 3r d'ESO està present a les graderies generant suport actiu basat en el respecte. Al tancament de la sessió, es realitza el lliurament simbòlic d'aliments a l'ONG o entitat seleccionada pel grup.",
+                cooldown: "Fotografia grupal de cohesió del projecte.",
+                dua: "Nouvinguts: Rols de lliurament dels diplomes basats en el llenguatge d'imatges d'èxit col·lectiu.",
+                classDuaHighlight: "Nouvinguts"
+            },
+            10: {
+                title: "Sessió 10: Autoavaluació, Reflexió i Tancament de la SdA",
+                focus: "Metacognició i lliçons d'inclusió en l'esport",
+                warmup: "Sessió relaxada a l'aula del grup.",
+                main: "Ompliment individual del quadern de bitàcola del torneig. Els alumnes fan servir una targeta d'autoavaluació en forma de diana on puntuen el seu propi nivell d'implicació, el respecte a les decisions arbitrals i el seu progrés tàctic.",
+                cooldown: "Agraïments de la comunitat educativa pel projecte realitzat.",
+                dua: "TEA/TEL: L'autoavaluació té opció de format simplificat tipus formulari d'elecció múltiple visual.",
+                classDuaHighlight: "TEA"
+            }
+        };
+
+        // Tab Navigation Controller
+        function switchTab(tabId) {
+            // Hide all tab contents
+            document.querySelectorAll('.tab-content').forEach(element => {
+                element.classList.add('hidden');
+            });
+            // Show requested tab content
+            document.getElementById('section-' + tabId).classList.remove('hidden');
+
+            // Reset navigation states
+            document.querySelectorAll('.tab-btn').forEach(button => {
+                button.classList.remove('bg-violet-600', 'text-white');
+                button.classList.add('text-slate-400', 'hover:bg-slate-800', 'hover:text-white');
+            });
+            // Set active button
+            const activeBtn = document.getElementById('btn-' + tabId);
+            activeBtn.classList.remove('text-slate-400', 'hover:bg-slate-800', 'hover:text-white');
+            activeBtn.classList.add('bg-violet-600', 'text-white');
+
+            // Update Dynamic Headings based on active tab
+            const headings = {
+                'presentacio': { title: "1. Presentació i Justificació de la SdA", subtitle: "Context real, repte motivador i per què el Dachtball transforma les aules." },
+                'curriculum': { title: "2. Alineació Curricular i Disseny DUA", subtitle: "Competències específiques de Catalunya, criteris oficials i adaptacions inclusives." },
+                'sessions': { title: "3. La Programació de les 10 Sessions (TGfU)", subtitle: "Un recorregut detallat on el descobriment tàctica precedeix la tècnica." },
+                'torneig': { title: "4. Estructura del Torneig Solidari", subtitle: "Rols d'organització, punts de cohesió i l'impacte comunitari real." },
+                'recursos': { title: "5. Recursos Visuals Descarregables", subtitle: "Maquetació de les targetes de pista d'inclusió i elements DUA." },
+                'avaluacio': { title: "6. Avaluació Formativa i Rúbriques", subtitle: "Mecanismes d'autoavaluació, coavaluació d'equips i observació directa del docent." }
+            };
+
+            document.getElementById('header-title').innerText = headings[tabId].title;
+            document.getElementById('header-subtitle').innerText = headings[tabId].subtitle;
+        }
+
+        // Highlight NESE adaptations
+        function highlightDua(group) {
+            activeDuaFilter = group;
+            
+            // Toggle active status in filter buttons
+            document.querySelectorAll('.dua-filter').forEach(btn => {
+                btn.classList.remove('bg-violet-600', 'text-white', 'active');
+                btn.classList.add('text-slate-600', 'hover:bg-slate-200');
+            });
+            
+            const eventTarget = window.event ? window.event.target : null;
+            if (eventTarget) {
+                eventTarget.classList.remove('text-slate-600', 'hover:bg-slate-200');
+                eventTarget.classList.add('bg-violet-600', 'text-white', 'active');
+            }
+
+            // Re-render the active session view with the filter applied
+            const activeSessionId = document.querySelector('.session-nav-btn.active').id.split('-')[2];
+            showSession(parseInt(activeSessionId));
+        }
+
+        // Show single session data dynamically
+        function showSession(id) {
+            // Update Navigation Button States
+            document.querySelectorAll('.session-nav-btn').forEach(btn => {
+                btn.classList.remove('bg-violet-600', 'text-white', 'active');
+                btn.classList.add('bg-slate-100', 'text-slate-600');
+            });
+            const activeBtn = document.getElementById('s-btn-' + id);
+            activeBtn.classList.remove('bg-slate-100', 'text-slate-600');
+            activeBtn.classList.add('bg-violet-600', 'text-white', 'active');
+
+            const s = sessionsData[id];
+            
+            // Check if this session matches active DUA filter to display a badge
+            const isHighlighted = (activeDuaFilter === 'all' || s.classDuaHighlight === activeDuaFilter);
+            const borderStyle = isHighlighted ? 'border-violet-500' : 'border-slate-200';
+            const bgStyle = isHighlighted ? 'bg-violet-50/20' : 'bg-white';
+
+            const html = `
+                <div class="border-l-8 ${borderStyle} p-4 rounded-xl ${bgStyle} transition-all duration-300">
+                    <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-2 mb-4">
+                        <div>
+                            <span class="bg-violet-100 text-violet-800 text-xs font-bold px-2.5 py-1 rounded-full uppercase tracking-wider">SESSIÓ ${id} DE 10</span>
+                            <h4 class="text-2xl font-bold text-slate-900 mt-1">${s.title}</h4>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <span class="bg-pink-100 text-pink-800 text-xs font-bold px-3 py-1 rounded-full flex items-center gap-1">
+                                <i class="fa-solid fa-brain"></i> TGfU Focus: ${s.focus}
+                            </span>
+                            ${isHighlighted ? `<span class="bg-emerald-100 text-emerald-800 text-xs font-bold px-3 py-1 rounded-full">DUA Aplicat</span>` : ''}
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
+                        <div class="space-y-2 p-4 bg-slate-50 rounded-2xl">
+                            <h5 class="font-bold text-sm text-slate-800 flex items-center gap-2">
+                                <span class="text-violet-600"><i class="fa-solid fa-fire-flame-curved"></i></span> 1. Escalfament i Activació (15')
+                            </h5>
+                            <p class="text-xs text-slate-600 leading-relaxed">${s.warmup}</p>
+                        </div>
+
+                        <div class="space-y-2 p-4 bg-slate-50 rounded-2xl md:col-span-2">
+                            <h5 class="font-bold text-sm text-slate-800 flex items-center gap-2">
+                                <span class="text-pink-600"><i class="fa-solid fa-play-circle"></i></span> 2. Part Central i Cicle TGfU (30')
+                            </h5>
+                            <p class="text-xs text-slate-600 leading-relaxed">${s.main}</p>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6 pt-4 border-t border-slate-100">
+                        <div class="space-y-2">
+                            <h5 class="font-bold text-sm text-slate-800 flex items-center gap-2">
+                                <span class="text-teal-600"><i class="fa-solid fa-wind"></i></span> 3. Tornada a la calma (10')
+                            </h5>
+                            <p class="text-xs text-slate-600 leading-relaxed">${s.cooldown}</p>
+                        </div>
+
+                        <div class="bg-slate-900 text-slate-100 p-4 rounded-2xl space-y-2 border border-slate-800">
+                            <h5 class="font-bold text-xs text-pink-400 uppercase tracking-widest flex items-center gap-1.5">
+                                <i class="fa-solid fa-shield-cat"></i> Adaptació Inclusiva DUA de la Sessió
+                            </h5>
+                            <p class="text-xs text-slate-300 leading-relaxed">${s.dua}</p>
+                            <span class="inline-block text-[10px] text-violet-300 bg-violet-950 px-2 py-0.5 rounded font-semibold">Perfil Prioritari: ${s.classDuaHighlight}</span>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            document.getElementById('session-display-box').innerHTML = html;
+        }
+
+        // Initialize App on Window Load
+        window.onload = function() {
+            // Show Session 1 details by default
+            showSession(1);
+        }
+    </script>
+</body>
+</html>
